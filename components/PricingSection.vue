@@ -1,34 +1,27 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Check, Shield, Zap, LayoutDashboard, Bike, Users } from 'lucide-vue-next'
+import { Check, Shield, Zap, CheckCircle2, LayoutDashboard, Bike, Users } from 'lucide-vue-next'
 
 const plans = [
   {
-    name: 'Free Trial',
-    price: '0',
-    period: '7 days',
-    description: 'Perfect for testing all pro features.',
-    features: ['Up to 2 Riders', 'Unlimited Customers', 'Manual Reconciliation', 'Order History (7 Days)'],
-    buttonText: 'Get Started',
-    popular: false
-  },
-  {
-    name: 'Pro',
-    price: '499',
+    name: 'Starter Plan',
+    price: '799–999',
     period: 'month',
-    description: 'Everything you need to scale.',
-    features: ['Unlimited Riders', 'Advance Reports & CSV Export', 'Automatic Reconciliation', 'Customer Loyalty Points', 'Priority Support'],
-    buttonText: 'Try 7 Days Free',
-    popular: true
+    description: 'Perfect for small stores with 1–5 riders.',
+    features: ['Orders Management', 'Rider Tracking', 'Expected COD Tracking', 'Basic Sales Reports', 'Customer Loyalty', 'Promos & Discounts'],
+    buttonText: 'Go Starter',
+    popular: false,
+    earlyAdopterPrice: '399'
   },
   {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: '',
-    description: 'For chains and large fleets.',
-    features: ['Multi-Store Dashboard', 'API Access', 'Dedicated Account Manager', 'Custom Roles & Permissions'],
-    buttonText: 'Contact Sales',
-    popular: false
+    name: 'Growth Plan',
+    price: '1,499–1,999',
+    period: 'month',
+    description: 'For growing businesses with larger fleets.',
+    features: ['More Riders Support', 'Advanced Logistics Analytics', 'Priority Support', 'Multi-branch Dashboard (Soon)'],
+    buttonText: 'Go Growth',
+    popular: true,
+    earlyAdopterPrice: '749'
   }
 ]
 </script>
@@ -37,12 +30,18 @@ const plans = [
   <section id="pricing" class="py-24 bg-background relative overflow-hidden">
     <div class="container px-4">
       <div class="max-w-3xl mx-auto text-center mb-16 px-4">
-        <Badge variant="secondary" class="mb-4">Flexible Pricing</Badge>
-        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">Choose Your <span class="gradient-text">Growth Plan</span></h2>
-        <p class="text-lg text-muted-foreground">Start for free and scale as your business grows. No hidden fees.</p>
+        <Badge variant="secondary" class="mb-4">Special Launch Offer</Badge>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">Choose Your <span class="gradient-text">Success Plan</span></h2>
+        
+        <!-- Early Adopter Offer Banner -->
+        <div class="mt-8 p-4 bg-primary/5 border border-primary/20 rounded-2xl inline-block">
+          <p class="text-primary font-bold flex items-center gap-2">
+            <Zap class="w-4 h-4" /> Intro / Early Adopter Offer: First 3 months at 50% OFF!
+          </p>
+        </div>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <div 
           v-for="plan in plans" 
           :key="plan.name"
@@ -52,7 +51,7 @@ const plans = [
           ]"
         >
           <div v-if="plan.popular" class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
-            MOST POPULAR
+            RECOMMENDED
           </div>
 
           <div class="mb-8">
@@ -60,15 +59,17 @@ const plans = [
             <p class="text-sm text-muted-foreground leading-relaxed">{{ plan.description }}</p>
           </div>
 
-          <div class="mb-8 items-end gap-1 flex">
-            <div class="text-5xl font-black tracking-tight" v-if="plan.price !== 'Custom'">
-              ₱{{ plan.price }}
+          <div class="mb-8">
+            <div class="flex items-end gap-1 mb-1">
+              <div class="text-4xl font-black tracking-tight">
+                ₱{{ plan.price }}
+              </div>
+              <div class="text-muted-foreground font-bold mb-1 opacity-70">
+                / {{ plan.period }}
+              </div>
             </div>
-            <div class="text-4xl font-black tracking-tight" v-else>
-              {{ plan.price }}
-            </div>
-            <div v-if="plan.period" class="text-muted-foreground font-bold mb-1 opacity-70">
-              / {{ plan.period }}
+            <div class="text-sm text-primary font-bold flex items-center gap-1">
+              <CheckCircle2 class="w-4 h-4" /> ₱{{ plan.earlyAdopterPrice }} / mo for first 3 months
             </div>
           </div>
 
@@ -86,7 +87,7 @@ const plans = [
             class="w-full py-6 text-base font-bold rounded-2xl shadow-lg transition-transform hover:scale-[1.02]"
             as-child
           >
-            <NuxtLink :to="plan.price === 'Custom' ? '/contact' : '/get-started'">
+            <NuxtLink to="/get-started">
               {{ plan.buttonText }}
             </NuxtLink>
           </Button>

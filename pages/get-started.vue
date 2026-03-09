@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Store, UserPlus, Download, MessageSquare, ArrowRight, CheckCircle2 } from 'lucide-vue-next'
+import { Store, Download, MessageSquare, ArrowRight, CheckCircle2 } from 'lucide-vue-next'
 
 const steps = [
   {
@@ -7,21 +7,16 @@ const steps = [
     desc: 'Register your business name, location, and water types in seconds.',
     icon: Store,
     color: 'bg-blue-500',
-    action: 'Create Account'
-  },
-  {
-    title: 'Invite Your Riders',
-    desc: 'Generate unique codes for your delivery team to sync with your dashboard.',
-    icon: UserPlus,
-    color: 'bg-primary',
-    action: 'Add Riders'
+    action: 'Setup Account',
+    link: 'https://forms.gle/pBLbrS4VZqP47kL38'
   },
   {
     title: 'Download & Launch',
     desc: 'Get the HydroDash app on your phone and start taking orders.',
     icon: Download,
     color: 'bg-cyan-500',
-    action: 'Download App'
+    action: 'Download App',
+    link: '#pricing'
   }
 ]
 </script>
@@ -36,11 +31,11 @@ const steps = [
           <Badge variant="secondary" class="mb-4">Launchpad</Badge>
           <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-6">Let's Get Your Business <span class="gradient-text">Live</span></h1>
           <p class="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed text-balance">
-            Setting up HydroDash is simple. Follow these three steps to transition from manual chaos to total digital control.
+            Setting up HydroDash is simple. Follow these two steps to transition from manual chaos to total digital control.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 relative mb-20">
+        <div class="grid md:grid-cols-2 gap-8 relative mb-20 max-w-3xl mx-auto">
             <!-- Connector Line (Desktop) -->
             <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-muted -z-10 -translate-y-1/2"></div>
             
@@ -65,9 +60,11 @@ const steps = [
                     {{ step.desc }}
                 </p>
 
-                <Button class="w-full rounded-2xl py-6 font-bold group-hover:scale-[1.05] transition-transform">
-                    {{ step.action }} <ArrowRight class="ml-2 w-4 h-4" />
-                </Button>
+                <NuxtLink :to="step.link" :target="step.link.startsWith('http') ? '_blank' : undefined" class="w-full">
+                  <Button class="w-full rounded-2xl py-6 font-bold group-hover:scale-[1.05] transition-transform">
+                      {{ step.action }} <ArrowRight class="ml-2 w-4 h-4" />
+                  </Button>
+                </NuxtLink>
             </div>
         </div>
 
