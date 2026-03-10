@@ -39,9 +39,6 @@ const primaryColor = 'text-primary'
           <CardTitle class="text-2xl font-black tracking-tight mb-1">
             You're All <span class="gradient-text">Set!</span>
           </CardTitle>
-          <CardDescription class="text-sm px-2 leading-relaxed">
-            Your email has been successfully verified.
-          </CardDescription>
         </CardHeader>
 
         <CardContent class="pb-8 px-6 flex flex-col gap-6">
@@ -50,16 +47,12 @@ const primaryColor = 'text-primary'
               <div class="w-4 h-4 rounded-full bg-green-500/20 flex items-center justify-center">
                 <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
               </div>
-              <p class="text-xs font-bold text-slate-600 dark:text-slate-300">Account activated successfully</p>
+              <p class="text-xs font-bold text-slate-600 dark:text-slate-300">Your email has been successfully verified.</p>
             </div>
           </div>
 
-          <div class="pt-2 text-center">
-            <p class="text-sm font-black text-primary animate-pulse">
-              Login on HydroDash App now
-            </p>
-            
-            <p class="mt-8 text-[10px] text-muted-foreground uppercase tracking-widest font-bold opacity-50">
+          <div class="text-center">
+            <p class="mt-4 text-[10px] text-muted-foreground uppercase tracking-widest font-bold opacity-50">
               Powered by HydroDash
             </p>
           </div>
