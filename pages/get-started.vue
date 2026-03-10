@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Store, Download, MessageSquare, ArrowRight, CheckCircle2 } from 'lucide-vue-next'
+import { Store, Download, MessageSquare, ArrowRight, CheckCircle2, ShieldCheck, Settings2, Smartphone } from 'lucide-vue-next'
 
 const steps = [
   {
@@ -16,7 +16,26 @@ const steps = [
     icon: Download,
     color: 'bg-cyan-500',
     action: 'Download App',
-    link: '#pricing'
+    link: '/app/HydroDash-1.0.0.apk',
+    download: true
+  }
+]
+
+const installGuide = [
+  {
+    title: 'Download the APK',
+    desc: 'Click the "Download App" button above to start the download.',
+    icon: Download
+  },
+  {
+    title: 'Enable "Unknown Sources"',
+    desc: 'If prompted, go to Settings and allow "Install from unknown sources" for your browser.',
+    icon: Settings2
+  },
+  {
+    title: 'Install & Open',
+    desc: 'Tap the downloaded file and select "Install". Open the app and log in!',
+    icon: Smartphone
   }
 ]
 </script>
@@ -60,11 +79,56 @@ const steps = [
                     {{ step.desc }}
                 </p>
 
-                <NuxtLink :to="step.link" :target="step.link.startsWith('http') ? '_blank' : undefined" class="w-full">
+                <component 
+                  :is="step.download ? 'a' : 'NuxtLink'"
+                  :href="step.download ? step.link : undefined"
+                  :to="!step.download ? step.link : undefined"
+                  :download="step.download ? '' : undefined"
+                  :target="step.link.startsWith('http') ? '_blank' : undefined" 
+                  class="w-full"
+                >
                   <Button class="w-full rounded-2xl py-6 font-bold group-hover:scale-[1.05] transition-transform">
                       {{ step.action }} <ArrowRight class="ml-2 w-4 h-4" />
                   </Button>
-                </NuxtLink>
+                </component>
+            </div>
+        </div>
+
+        <!-- Installation Guide Section -->
+        <div class="mb-20">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 bg-primary/10 px-4 py-1.5 rounded-full text-xs font-bold text-primary uppercase tracking-widest mb-4">
+                    <ShieldCheck class="w-3 h-3" />
+                    Android Setup Guide
+                </div>
+                <h2 class="text-3xl font-black mb-4">How to Install</h2>
+                <p class="text-muted-foreground">Follow these simple steps to get HydroDash running on your Android device.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div 
+                    v-for="(guide, index) in installGuide" 
+                    :key="guide.title"
+                    class="bg-card/50 border border-dashed rounded-3xl p-6 relative group hover:border-primary/50 transition-colors"
+                >
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                            <component :is="guide.icon" class="w-5 h-5" />
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-1 text-sm uppercase tracking-tight text-primary">Step {{ index + 1 }}</h4>
+                            <h3 class="font-bold mb-2">{{ guide.title }}</h3>
+                            <p class="text-sm text-muted-foreground leading-relaxed">{{ guide.desc }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 p-4 bg-muted/50 rounded-2xl border flex items-start gap-4">
+                <ShieldCheck class="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
+                <p class="text-xs text-muted-foreground leading-relaxed">
+                    <strong>Note:</strong> Since HydroDash is not yet on the Play Store, Android will show a standard "File might be harmful" warning. Don't worry, this is normal for APKs. Click <strong>"Download anyway"</strong> to proceed.
+                </p>
             </div>
         </div>
 
@@ -96,5 +160,6 @@ const steps = [
     </main>
 
     <AppFooter />
+    <FloatingActions />
   </div>
 </template>

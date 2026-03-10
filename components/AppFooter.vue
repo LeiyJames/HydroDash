@@ -9,7 +9,8 @@ const footerLinks = [
     links: [
       { name: 'Features', href: '#features' },
       { name: 'Why Us', href: '#why' },
-      { name: 'Get Started', href: '/get-started' }
+      { name: 'Get Started', href: '/get-started' },
+      { name: 'Download App', href: '/app/HydroDash-1.0.0.apk', target: '_blank' }
     ] 
   },
   { 
@@ -85,7 +86,7 @@ const socialLinks = [
           <h4 class="font-bold text-sm tracking-wider uppercase text-muted-foreground">{{ section.title }}</h4>
           <ul class="space-y-3">
             <li v-for="link in section.links" :key="link.name">
-              <a :href="link.href" class="text-sm text-foreground/80 hover:text-primary transition-colors">{{ link.name }}</a>
+              <a :href="link.href" :target="link.target" class="text-sm text-foreground/80 hover:text-primary transition-colors">{{ link.name }}</a>
             </li>
           </ul>
         </div>

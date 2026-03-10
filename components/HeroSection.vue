@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PlayCircle, ShieldCheck, Zap } from 'lucide-vue-next'
+import { PlayCircle, ShieldCheck, Zap, Download } from 'lucide-vue-next'
 
 const features = [
   { icon: ShieldCheck, text: 'Secure Revenue' },
@@ -35,10 +35,12 @@ const features = [
                 Get Started
               </Button>
             </NuxtLink>
-            <Button variant="ghost" size="lg" class="w-full sm:w-auto gap-2 group border border-transparent hover:border-border rounded-full transition-all">
-              <PlayCircle class="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-              Watch Demo
-            </Button>
+            <a href="/app/HydroDash-1.0.0.apk" download class="w-full sm:w-auto">
+              <Button variant="outline" size="lg" class="w-full sm:w-auto gap-2 rounded-full hover:bg-primary/5 transition-all">
+                <Download class="w-5 h-5 text-primary" />
+                Download App
+              </Button>
+            </a>
           </div>
 
           <div class="mt-12 flex items-center gap-6 justify-center md:justify-start text-sm text-muted-foreground animate-in fade-in duration-1000 delay-500">

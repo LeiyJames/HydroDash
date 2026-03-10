@@ -61,5 +61,6 @@ import { Mail, Phone, MapPin, MessageCircle } from 'lucide-vue-next'
     </main>
 
     <AppFooter />
+    <FloatingActions />
   </div>
 </template>

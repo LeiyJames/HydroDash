@@ -49,5 +49,6 @@ import { Droplets, Target, Users, ShieldCheck } from 'lucide-vue-next'
     </main>
 
     <AppFooter />
+    <FloatingActions />
   </div>
 </template>
