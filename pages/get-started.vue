@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Store, Download, MessageSquare, ArrowRight, CheckCircle2, ShieldCheck, Settings2, Smartphone } from 'lucide-vue-next'
 
+const setupFormUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdUFq5IN492a37RDcfi0pqZvbDNbc_vjXLxVBF6tV_Ia-O_EA/viewform'
+
 const steps = [
   {
     title: 'Create Your Store Profile',
@@ -8,7 +11,8 @@ const steps = [
     icon: Store,
     color: 'bg-blue-500',
     action: 'Setup Account',
-    link: 'https://forms.gle/pBLbrS4VZqP47kL38'
+    link: setupFormUrl,
+    external: true,
   },
   {
     title: 'Download & Launch',
@@ -16,7 +20,7 @@ const steps = [
     icon: Download,
     color: 'bg-cyan-500',
     action: 'Download App',
-    link: '/app/HydroDash-1.1.0.apk',
+    link: '/app/HydroDash-1.2.0.apk',
     download: true
   }
 ]
@@ -79,18 +83,23 @@ const installGuide = [
                     {{ step.desc }}
                 </p>
 
-                <component 
-                  :is="step.download ? 'a' : 'NuxtLink'"
-                  :href="step.download ? step.link : undefined"
-                  :to="!step.download ? step.link : undefined"
+                <a
+                  v-if="step.download || step.external"
+                  :href="step.link"
                   :download="step.download ? '' : undefined"
-                  :target="step.link.startsWith('http') ? '_blank' : undefined" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   class="w-full"
                 >
                   <Button class="w-full rounded-2xl py-6 font-bold group-hover:scale-[1.05] transition-transform">
-                      {{ step.action }} <ArrowRight class="ml-2 w-4 h-4" />
+                    {{ step.action }} <ArrowRight class="ml-2 w-4 h-4" />
                   </Button>
-                </component>
+                </a>
+                <NuxtLink v-else :to="step.link" class="w-full">
+                  <Button class="w-full rounded-2xl py-6 font-bold group-hover:scale-[1.05] transition-transform">
+                    {{ step.action }} <ArrowRight class="ml-2 w-4 h-4" />
+                  </Button>
+                </NuxtLink>
             </div>
         </div>
 

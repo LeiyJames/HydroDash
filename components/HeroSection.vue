@@ -35,7 +35,7 @@ const features = [
                 Get Started
               </Button>
             </NuxtLink>
-            <a href="/app/HydroDash-1.1.0.apk" download class="w-full sm:w-auto">
+            <a href="/app/HydroDash-1.2.0.apk" download class="w-full sm:w-auto">
               <Button variant="outline" size="lg" class="w-full sm:w-auto gap-2 rounded-full hover:bg-primary/5 transition-all">
                 <Download class="w-5 h-5 text-primary" />
                 Download App

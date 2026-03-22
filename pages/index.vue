@@ -12,7 +12,6 @@
       <HeroSection />
     <WhyHydroDash />
     <GallerySection />
-    <FeaturesSection />
     <PricingSection />
     <BlogSection />
     

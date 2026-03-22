@@ -10,7 +10,7 @@ const footerLinks = [
       { name: 'Features', href: '#features' },
       { name: 'Why Us', href: '#why' },
       { name: 'Get Started', href: '/get-started' },
-      { name: 'Download App', href: '/app/HydroDash-1.1.0.apk', target: '_blank' }
+      { name: 'Download App', href: '/app/HydroDash-1.2.0.apk', target: '_blank' }
     ] 
   },
   { 
@@ -67,8 +67,8 @@ const socialLinks = [
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
         <div class="col-span-2">
           <NuxtLink to="/" class="inline-flex items-center gap-2 mb-6 group">
-            <div class="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center bg-white shadow-sm border border-slate-100 p-0">
-              <img src="~/assets/css/images/logo.png" alt="HydroDash Logo" class="w-full h-full object-contain scale-[1.6]" />
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-100 bg-white p-1 shadow-sm">
+              <img src="~/assets/css/images/logosvg.svg" alt="HydroDash Logo" class="h-full w-full object-contain object-center" />
             </div>
             <span class="text-xl font-bold tracking-tight">HydroDash</span>
           </NuxtLink>

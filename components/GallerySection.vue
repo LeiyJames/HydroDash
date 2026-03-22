@@ -1,33 +1,54 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { LayoutDashboard, Bike, Users, ShieldCheck, Zap, Droplets } from 'lucide-vue-next'
+import { LayoutDashboard, Bike, Users, ShieldCheck, Zap } from 'lucide-vue-next'
 
 const activeTab = ref<'admin' | 'rider' | 'customer'>('admin')
 
-const mockups = {
+type MockupFeature = { title: string; desc?: string }
+
+const mockups: Record<
+  'admin' | 'rider' | 'customer',
+  { title: string; subtitle: string; features: MockupFeature[]; accent: string }
+> = {
   admin: {
     title: 'Admin Dashboard',
     subtitle: 'Full visibility on every order and rider activity.',
-    features: ['Real-time Order Tracking', 'Rider Remittance Logs', 'Inventory Alerts'],
-    accent: 'bg-primary'
+    features: [
+      { title: 'Real-time pulse: revenue, queue & what’s pending' },
+      { title: 'Expected COD from rider' },
+      { title: 'Pricing & Promos' },
+      { title: 'Activity log you can trust' },
+    ],
+    accent: 'bg-primary',
   },
   rider: {
     title: 'Rider App',
     subtitle: 'Simplified task management for delivery teams.',
-    features: ['Distance-Sorted Delivery List', 'One-Tap Status Update', 'Digital Receipts'],
-    accent: 'bg-blue-500'
+    features: [
+      { title: "One place for today's work" },
+      { title: 'My Deliveries' },
+      { title: 'Customer details' },
+      { title: 'Clear accountability' },
+    ],
+    accent: 'bg-blue-500',
   },
   customer: {
     title: 'Customer Portal',
     subtitle: 'Zero friction for repeat ordering and status checks.',
-    features: ['1-Click Instant Reorder', 'Loyalty Point Tracking', 'Push Notification Alerts'],
-    accent: 'bg-cyan-400'
-  }
+    features: [
+      { title: 'Order in a few taps' },
+      { title: 'Track every order' },
+      { title: 'Loyalty that pays off' },
+      { title: 'GCash or COD' },
+      { title: 'Push Notification Alerts' },
+    ],
+    accent: 'bg-cyan-400',
+  },
 }
 </script>
 
 <template>
-  <section id="mockups" class="py-24 bg-slate-50 dark:bg-slate-900 overflow-hidden relative">
+  <section id="features" class="py-24 bg-slate-50 dark:bg-slate-900 overflow-hidden relative">
     <div class="container px-4">
       <div class="max-w-4xl mx-auto flex flex-col items-center mb-16 text-center">
         <Badge variant="secondary" class="mb-4">Unified Ecosystem</Badge>
@@ -61,8 +82,8 @@ const mockups = {
                 <!-- Inner UI Mockup -->
                 <div class="flex items-center justify-between mb-8 px-2">
                     <div class="h-6 w-24 bg-muted rounded-full animate-pulse"></div>
-                    <div class="w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-slate-100 flex items-center justify-center p-0 bg-white">
-                        <img src="~/assets/css/images/logo.png" alt="HydroDash" class="w-full h-full object-contain scale-[1.6]" />
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-100 bg-white p-0.5 shadow-sm">
+                        <img src="~/assets/css/images/logosvg.svg" alt="HydroDash" class="h-full w-full object-contain object-center" />
                     </div>
                 </div>
 
@@ -114,11 +135,14 @@ const mockups = {
             </div>
 
             <div class="space-y-4 pt-4">
-                <div v-for="f in mockups[activeTab].features" :key="f" class="flex items-center gap-4 group">
-                    <div class="w-10 h-10 rounded-2xl bg-primary/5 text-primary flex items-center justify-center group-hover:bg-primary transition-all duration-300 group-hover:text-white group-hover:scale-110 shadow-lg shadow-primary/5">
+                <div v-for="f in mockups[activeTab].features" :key="f.title" class="flex items-start gap-4 group">
+                    <div class="w-10 h-10 shrink-0 rounded-2xl bg-primary/5 text-primary flex items-center justify-center group-hover:bg-primary transition-all duration-300 group-hover:text-white group-hover:scale-110 shadow-lg shadow-primary/5">
                         <ShieldCheck class="w-5 h-5" />
                     </div>
-                    <span class="font-bold text-lg md:text-xl tracking-tight opacity-90">{{ f }}</span>
+                    <div class="min-w-0">
+                        <span class="font-bold text-lg md:text-xl tracking-tight opacity-90 block">{{ f.title }}</span>
+                        <p v-if="f.desc" class="text-sm text-muted-foreground mt-1 leading-relaxed">{{ f.desc }}</p>
+                    </div>
                 </div>
             </div>
 

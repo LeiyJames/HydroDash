@@ -30,8 +30,8 @@ const navLinks = [
   >
     <div class="container flex items-center justify-between">
       <NuxtLink to="/#hero" class="flex items-center gap-2 group" @click="isMobileMenuOpen = false">
-        <div class="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center bg-white shadow-sm border border-slate-100 p-0">
-          <img src="~/assets/css/images/logo.png" alt="HydroDash" class="w-full h-full object-contain scale-[1.6]" />
+        <div class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-100 bg-white p-1 shadow-sm">
+          <img src="~/assets/css/images/logosvg.svg" alt="HydroDash" class="h-full w-full object-contain object-center" />
         </div>
         <span class="text-xl font-bold tracking-tight">HydroDash</span>
       </NuxtLink>
