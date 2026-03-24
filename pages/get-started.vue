@@ -20,7 +20,7 @@ const steps = [
     icon: Download,
     color: 'bg-cyan-500',
     action: 'Download App',
-    link: '/app/HydroDash-1.2.0.apk',
+    link: '/app/HydroDash-1.2.1.apk',
     download: true
   }
 ]

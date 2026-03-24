@@ -10,7 +10,7 @@ const footerLinks = [
       { name: 'Features', href: '#features' },
       { name: 'Why Us', href: '#why' },
       { name: 'Get Started', href: '/get-started' },
-      { name: 'Download App', href: '/app/HydroDash-1.2.0.apk', target: '_blank' }
+      { name: 'Download App', href: '/app/HydroDash-1.2.1.apk', target: '_blank' }
     ] 
   },
   { 
